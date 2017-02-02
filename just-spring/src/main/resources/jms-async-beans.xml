@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd" 
+       default-init-method="initMe"
+       default-destroy-method="destroyMe" >
+    
+    <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="topic.DEFAULT_STUDENTS" />
+    </bean>
+
+    <bean id="bookOrderListener" class="by.den.jscore.jms.async.BookOrderMessageListener"/>
+   
+    <bean name="bookOrderContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="destination" ref="defaultDestination" />
+        <property name="messageListener" ref="bookOrderListener"/>
+    </bean>
+    
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+    </bean>
+    
+</beans>

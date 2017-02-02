@@ -55,7 +55,7 @@ public class AwareInterfaces implements ApplicationContextAware,
 	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
 		System.out.println("setResourceLoader called");
-		Resource resource = resourceLoader.getResource("classpath:spring.xml");
+		Resource resource = resourceLoader.getResource("classpath:bean-lifecycle.xml");
 		System.out.println("setResourceLoader:: Resource File Name="
 				+ resource.getFilename());
 	}

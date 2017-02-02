@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd" 
+       default-init-method="initMe"
+       default-destroy-method="destroyMe" >
+    
+    <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="topic.DEFAULT_STUDENTS" />
+    </bean>
+
+    <bean name="studentEnroller" class="by.den.jscore.jms.pub.StudentEnroller">
+        <property name="destinationName" value="topic.STUDENTS"/>
+        <property name="jmsTemplate" ref="jmsTemplate"/>
+        <property name="defaultDestinationJmsTemplate" ref="jmsTemplateDefaultDestination"/>
+        
+    </bean>
+    
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="pubSubDomain" value="true"/>
+    </bean>
+    
+    <bean id="jmsTemplateDefaultDestination" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="pubSubDomain" value="true"/>
+        <property name="defaultDestination" ref="defaultDestination"/>
+    </bean>
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+    </bean>
+	
+    
+</beans>

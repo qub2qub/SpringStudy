@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean name="contextStartEventListener" class="by.den.jscore.containers.event.ContextStartedEventListener"/>
+    <bean name="contextStoppedEventListener" class="by.den.jscore.containers.event.ContextStoppedEventListener"/>
+    <bean name="contextRefreshedEventListener" class="by.den.jscore.containers.event.ContextRefreshedEventListener"/>
+    
+    <bean name = "money" class="by.den.jscore.containers.event.Money"/>
+    
+</beans>

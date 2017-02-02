@@ -1,0 +1,10 @@
+<hibernate-mapping>
+  <class name="by.den.jscore.data.Movie" table="MOVIES">
+  <id name="id" column="ID">
+    <generator class="assigned"/>
+  </id>
+  <property name="title" column="TITLE"/>
+  <property name="genre" column="GENRE"/>
+  <property name="synopsis" column="SYNOPSIS"/>
+ </class>
+</hibernate-mapping>

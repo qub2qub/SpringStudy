@@ -3,7 +3,7 @@ package com.journaldev.spring.main;
 import com.journaldev.spring.service.LC_MethodsOverride;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class SpringMain {
+public class RunSpringLifeCycle {
 
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="colorFactoryBean" class="by.den.spring.beanFactory.ColorFactory" />
+
+    <bean id = "carFactoryBean" class = "by.den.spring.beanFactory.MyCarFactoryBean"
+        init-method="sanityCheck">
+        <property name = "make" value = "Honda"/>
+        <property name = "year" value = "1984"/>
+    </bean>
+
+    <bean class = "by.den.spring.beanFactory.Person" id = "josh">
+        <property name = "car" ref = "carFactoryBean"/>
+        <property name = "name" value = "Josh"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean name="tradeReceiver" class="by.den.jscore.containers.autowire.TradeReceiver" autowire="byName"/>
+    
+    <bean name="tradePersistor" class="by.den.jscore.containers.autowire.TradePersistor" autowire-candidate="false"/>
+    <bean name="tradeTransformer" class="by.den.jscore.containers.autowire.TradeTransformer"/>
+    
+</beans>

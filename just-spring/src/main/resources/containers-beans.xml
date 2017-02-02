@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd" 
+       default-init-method="initMe"
+       default-destroy-method="destroyMe" >
+    
+    <bean name="emp" class="by.den.jscore.containers.Employee">
+        <property name="employeeName" value="Madhusudhan Konda"/>
+        <property name="employeeId" value="1"/>
+    </bean>
+    
+    <bean name="employeeFactory" class="by.den.jscore.containers.factory.EmployeeFactory"
+          factory-method="getEmployeeFactory">
+        
+    </bean>
+    <!-- beans for non-static factory-method creations -->
+    <bean name="employee" factory-bean="employeeCreator" factory-method="createEmployee"/>
+    
+    <bean name="executive" factory-bean="employeeCreator" factory-method="createExecutive"/>
+    
+    <bean name="employeeCreator" class="by.den.jscore.containers.factory.EmployeeCreator"/>
+    
+    <bean name="lazyEmployee" class="by.den.jscore.containers.lifecycle.LazyEmployee">
+        <property name="weekDays" value="THREE"/>
+    </bean> 
+   
+    
+</beans>

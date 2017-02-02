@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd" 
+       default-init-method="initMe"
+       default-destroy-method="destroyMe" >
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:fundamentals-beans.properties"/>
+        <!--
+        <property name="locations">
+            <list>
+                <value>classpath:fundamentals-beans.properties</value>
+                <value>classpath:fundamentals-beans_1.properties</value>
+            </list>
+        </property>
+        -->
+       
+        <property name="placeholderPrefix" value="#["/>
+        <property name="placeholderSuffix" value="]"/>
+    </bean>
+    
+    <bean name="person" class="by.den.jscore.fundamentals.Person">
+        <constructor-arg value="Madhusudhan" />
+        <constructor-arg type="String" value="Konda" />
+        <property name="age" value="99"/>
+        <property name="address" ref="address"/>
+    </bean>
+    
+    <bean name="address" class="by.den.jscore.fundamentals.Address">
+        <property name="doorNumber" value="99"/>
+        <property name="firstLine" value="Rainbow Vistas"/>
+        <property name="secondLine" value="Kukatpally, Hyderabad"/>
+        <property name="zipCode" value="101010"/>
+    </bean>
+    
+    <alias name="address" alias="billingAddress"/>
+    
+    <alias name="address" alias="shippingAddress"/>
+     
+    <bean name="reader" class="by.den.jscore.fundamentals.injection.FileReader">
+        <constructor-arg value="src/main/resources/basics/basics-trades-data.txt" />
+        <property name="componentName" value="TradeFileReader"/>
+    </bean>
+    
+    <bean name="fxRateProvider" scope="singleton"
+          class="by.den.jscore.fundamentals.callbacks.FxRateProvider" init-method="initMe" destroy-method="destroyMe">
+        <property name="baseCurrency" value="USD"/>
+    </bean> 
+    
+    <bean name="train" scope="prototype"
+          class="by.den.jscore.fundamentals.scope.Train">
+        <property name="trainName" value="London to Paris Special"/>
+    </bean>
+    <bean name="trainFactory" scope="singleton"
+          class="by.den.jscore.fundamentals.scope.TrainFactory">
+    </bean>
+    
+    <bean name="jobSearchAgent"
+          class="by.den.jscore.fundamentals.properties.JobSearchAgent">
+        <property name="type"  value="#[job.type]"/>
+        <property name="location" value="#[job.location]"/>
+    </bean>
+    <!-- Constructor arguments using types-->
+    <!--
+    <bean name="trainMan" class="TrainMan">
+        <constructor-arg type="String" value="Hyderabad-Kolhapur Express"/>
+        <constructor-arg type="int" value="17003"/>
+        <constructor-arg type="boolean" value="true"/>
+        <constructor-arg type="double" value="3000.50"/>
+    </bean>
+    -->
+    <!-- Constructor arguments using indices -->
+    
+    <bean name="trainMan" class="by.den.jscore.fundamentals.TrainMan">
+        <constructor-arg index="1" value="Hyderabad-Kolhapur Express"/>
+        <constructor-arg index="0" value="17003"/>
+        <constructor-arg index="2" value="true"/>
+        <constructor-arg index="3" value="3000.50"/>
+        <property name="trainCompany" value="SOUTHERN RAIL"/>
+    </bean>
+    
+    <bean name="capitalCitiesManager" class="by.den.jscore.fundamentals.propertyeditor.CapitalCitiesManager">
+        <property name="countriesList">
+            <list>
+                <value>United Kingdom</value>
+                <value>United States Of America</value>
+                <value>India</value>
+                <value>Japan</value>
+            </list>
+        </property>
+        <property name="countriesSet">
+            <set>
+                <value>United Kingdom</value>
+                <value>United Kingdom</value>
+                <value>United States Of America</value>
+                <value>United States Of America</value>
+                <value>India</value>
+                <value>Japan</value>
+            </set>
+        </property>
+        <property name="countryProperties">
+            <props>
+                <prop key="UK">London</prop>
+                <prop key="USA">Washington DC</prop>
+            </props>
+        </property>
+        <property name="countriesCapitalsMap">
+            <map>
+                <entry key="UK" value="London"/>
+                <entry key="USA" value="Washington DC"/>
+            </map>
+        </property>
+        <property name="countriesCapitalsRefMap">
+            <map>
+                <entry key="UK" value-ref="ukUnion"/>
+            </map>
+        </property>
+    </bean>
+    <bean name="ukUnion" class="by.den.jscore.fundamentals.propertyeditor.UnitedKingdomUnion"/>
+        
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean name="compNamePostProcessor" class="by.den.jscore.containers.postprocessor.DefaultComponentNamePostProcessor"/>
+    
+    <bean name="postProcessComponent" class="by.den.jscore.containers.postprocessor.PostProcessComponent"/>
+    <!--
+    <bean name = "emailSignature" class = "EmailSignaturePostProcessor"/>
+    <bean name="email" class="Email" init-method="init" destroy-method="destroy">
+        <property name="to" value="madhusudhan@madhusudhan.com"/>
+        <property name="from" value="madhusudhan@madhusudhan.com"/>
+        <property name="message" value="Test"/>
+        <property name="signature" value="Nothing"/>
+        
+    </bean>
+    -->
+</beans>

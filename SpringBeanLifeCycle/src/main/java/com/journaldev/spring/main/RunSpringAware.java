@@ -4,7 +4,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.journaldev.spring.service.AwareInterfaces;
 
-public class SpringAwareMain {
+public class RunSpringAware {
 
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(

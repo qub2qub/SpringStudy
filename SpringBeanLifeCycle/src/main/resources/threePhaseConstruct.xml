@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- чтобы обрабатывались другие стандартные спринговые аннотации, типа @PostConstruct -->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <!-- или можно прописать другие конфиги, которые подгрузят сразу всю пачку спринг бинов -->
+    <!--<context:component-scan base-package="by.den.spring.threePhaseBeanConstructor" />-->
+        <!--annotation-config="false" /> --> <!--что делает этот атрибут-->
+
+    <!--<context:annotation-config />-->
+<!--
+    <context:annotation-config> is used to activate annotations in beans already registered
+    in the application context (no matter if they were defined with XML or by package scanning).
+
+    <context:component-scan> can also do what <context:annotation-config> does but
+    <context:component-scan> also scans packages to find and register beans within the application context.
+ -->
+    <bean class="by.den.spring.threePhaseBeanConstructor.AfterProxyContextRefreshApplicationListener" />
+    <bean class="by.den.spring.threePhaseBeanConstructor.InjectRandomIntegerAnnotationBeanPostProcessor" />
+    <bean class="by.den.spring.threePhaseBeanConstructor.ProfilingHandlerBeanPostProcessor" />
+
+    <!--<context:annotation-driven />--> <!-- тогда что это за контекст ??? -->
+<!--
+    <context:annotation-config> declares support for general annotations
+    such as @Required, @Autowired, @PostConstruct, and so on.
+
+    <mvc:annotation-driven /> declares explicit support for annotation-driven MVC controllers
+    (i.e. @RequestMapping, @Controller, although support for those is the default behaviour),
+    as well as adding support for declarative validation via @Valid
+    and message body marshalling with @RequestBody/ResponseBody.
+    -->
+
+    <bean id="terminator" class="by.den.spring.threePhaseBeanConstructor.Terminator">
+        <property name="message" value="I'll be back !!!" />
+    </bean>
+
+
+</beans>
