@@ -7,8 +7,16 @@ import by.den.spring.threePhaseBeanConstructor.Quoter;
  */
 @DeprecatedClass(newImpl = T1000.class)
 public class T1st implements Robot {
+
+    String msg;
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public void sayBye() {
+        System.out.println("msg="+msg);
         System.out.println("I'm the FIRST terminator ! Bye !");
     }
 }

@@ -1,4 +1,4 @@
-package by.den.spring.beanFactory;
+package by.den.spring.factoryBean;
 
 public class Person {
  private String name;

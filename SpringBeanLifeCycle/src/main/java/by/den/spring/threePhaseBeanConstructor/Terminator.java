@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 /**
  * Created by Denis on 01-02-2017
  */
-@Profiler
+@ProfilerBenchmark
 public class Terminator implements Quoter, AfterProxyInit {
 
     @InjectRandomInteger(min = 2, max = 7)
@@ -43,7 +43,7 @@ public class Terminator implements Quoter, AfterProxyInit {
     private void postConstruct2nd() {
         System.out.println("__________ >>> Phase 2 >> @PostConstruct >> postConstruct2nd() >> sayQuote() >>");
         System.out.println("при этом здесь профилирования не будет, т.к. на фазе @PostConstruct" +
-                "\nещё не была обработана @Profiler, и не был сделан proxy.");
+                "\nещё не была обработана @ProfilerBenchmark, и не был сделан proxy.");
         sayQuote();
         System.out.println("_________ <<< end << Phase 2 << @PostConstruct >> postConstruct2nd()");
     }

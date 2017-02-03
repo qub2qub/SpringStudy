@@ -1,9 +1,9 @@
 package by.den.spring.beanPostProcessor;
 
 import by.den.spring.threePhaseBeanConstructor.InjectRandomInteger;
-import by.den.spring.threePhaseBeanConstructor.Profiler;
+import by.den.spring.threePhaseBeanConstructor.ProfilerBenchmark;
 
-@Profiler
+@ProfilerBenchmark
 public class HelloWorldBean {
 
    private String message;

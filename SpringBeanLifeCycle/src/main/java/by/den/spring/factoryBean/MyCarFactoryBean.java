@@ -1,8 +1,7 @@
-package by.den.spring.beanFactory;
+package by.den.spring.factoryBean;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 public class MyCarFactoryBean implements FactoryBean<Car> {
   private String make; 

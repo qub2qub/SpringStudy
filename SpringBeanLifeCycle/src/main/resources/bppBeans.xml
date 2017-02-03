@@ -15,6 +15,6 @@
     <bean class="by.den.spring.beanPostProcessor.HelloWorld_BPP" />
     <bean class="by.den.spring.beanPostProcessor.BPP_InjRndInt" />
     <bean class="by.den.spring.threePhaseBeanConstructor.InjectRandomIntegerAnnotationBeanPostProcessor" />
-    <bean class="by.den.spring.threePhaseBeanConstructor.ProfilingHandlerBeanPostProcessor" />
+    <bean class="by.den.spring.threePhaseBeanConstructor.ProfilerBenchmarkAnnotationBeanPostProcessor" />
 
 </beans>

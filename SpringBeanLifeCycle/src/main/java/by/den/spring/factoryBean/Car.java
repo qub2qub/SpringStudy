@@ -1,4 +1,4 @@
-package by.den.spring.beanFactory;
+package by.den.spring.factoryBean;
 
 import org.springframework.util.Assert;
 

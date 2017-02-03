@@ -1,11 +1,11 @@
-package by.den.spring.beanFactory;
+package by.den.spring.factoryBean;
 
 import org.springframework.beans.factory.FactoryBean;
 
 import java.awt.*;
 import java.util.Random;
 
-public class ColorFactory implements FactoryBean<Color> {
+public class ColorFactoryBean implements FactoryBean<Color> {
     @Override
     public Color getObject() throws Exception {
         Random random = new Random();

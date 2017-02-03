@@ -24,7 +24,7 @@
  -->
     <bean class="by.den.spring.threePhaseBeanConstructor.AfterProxyContextRefreshApplicationListener" />
     <bean class="by.den.spring.threePhaseBeanConstructor.InjectRandomIntegerAnnotationBeanPostProcessor" />
-    <bean class="by.den.spring.threePhaseBeanConstructor.ProfilingHandlerBeanPostProcessor" />
+    <bean class="by.den.spring.threePhaseBeanConstructor.ProfilerBenchmarkAnnotationBeanPostProcessor" />
 
     <!--<context:annotation-driven />--> <!-- тогда что это за контекст ??? -->
 <!--
