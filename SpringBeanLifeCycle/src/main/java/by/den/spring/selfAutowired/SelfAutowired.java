@@ -1,4 +1,4 @@
-package by.den.spring.annotationOverriding;
+package by.den.spring.selfAutowired;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

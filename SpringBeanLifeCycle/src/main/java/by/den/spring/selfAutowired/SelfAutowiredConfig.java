@@ -1,4 +1,4 @@
-package by.den.spring.annotationOverriding;
+package by.den.spring.selfAutowired;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = {
         "by.den.spring.threePhaseBeanConstructor",
-        "by.den.spring.annotationOverriding"})
-public class AnnOverrJConfig {
+        "by.den.spring.selfAutowired"})
+public class SelfAutowiredConfig {
 
 }

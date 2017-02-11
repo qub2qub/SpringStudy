@@ -12,12 +12,12 @@ import java.util.Random;
  * Created by Denis on 03-02-2017
  */
 @org.springframework.stereotype.Component
-public class ColorFrame extends JFrame {
+public class ColorFrame1st extends JFrame {
 
     @Autowired
     private Color color;
 
-    public ColorFrame() {
+    public ColorFrame1st() {
         setSize(200, 200);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

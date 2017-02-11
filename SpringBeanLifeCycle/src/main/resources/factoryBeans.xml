@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean
+            id="rndInt"
+            class="by.den.spring.puzzlers.factoryBeans.IntegerFactory"
+            scope="prototype" />
+<!-- Вопрос: обе фабрики прототайп, а должны создавать синглетоны: как отработают ? -->
+    <!--обе фабрики будут каждый раз заново создаваться, значит и
+    интегеры тоже у все будут прототайпы-->
+    <bean
+            id="myIntFactory"
+            class="by.den.spring.puzzlers.factoryBeans.MyIntegerFactory"
+            scope="prototype"/>
+    <bean
+        id="myInt"
+        class="java.lang.Integer"
+        scope="singleton"
+        factory-bean="myIntFactory"
+        factory-method="getInt" />
+
+    <!-- ТОГДА МОЖНО ЗАМУТИТЬ ЧТОБЫ ИНТЕГЕРЫ ГЕРЕНИРИЛИСЬ
+    НАПРИМЕР ТОЛЬКО ДЛЯ СЕССИИ, А ДЛЯ НОВОЙ СЕССИИ - НОВЫЕ ИНТЕГЕРЫ -->
+    <!--
+    <bean
+            id="mySingletonIntFactory"
+            class="by.den.spring.puzzlers.factoryBeans.MyIntegerFactory"
+            scope="singleton"/>
+    <bean
+            id="mySessionInt"
+            class="java.lang.Integer"
+            scope="session"
+            factory-bean="myIntFactory"
+            factory-method="getInt" />
+-->
+    <!-- И не забыть указать proxy-mode в scope="session" -->
+</beans>

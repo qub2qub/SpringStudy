@@ -1,4 +1,4 @@
-package by.den.spring.annotationOverriding;
+package by.den.spring.selfAutowired;
 
 import by.den.spring.threePhaseBeanConstructor.ProfilerBenchmark;
 import org.springframework.stereotype.Component;

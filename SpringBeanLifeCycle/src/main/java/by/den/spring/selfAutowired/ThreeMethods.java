@@ -1,4 +1,4 @@
-package by.den.spring.annotationOverriding;
+package by.den.spring.selfAutowired;
 
 /**
  * Created by Denis on 03-02-2017

@@ -1,4 +1,4 @@
-package by.den.spring.annotationOverriding;
+package by.den.spring.selfAutowired;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

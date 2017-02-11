@@ -25,7 +25,7 @@
     <bean class="by.den.spring.threePhaseBeanConstructor.AfterProxyContextRefreshApplicationListener" />
     <bean class="by.den.spring.threePhaseBeanConstructor.InjectRandomIntegerAnnotationBeanPostProcessor" />
     <bean class="by.den.spring.threePhaseBeanConstructor.ProfilerBenchmarkAnnotationBeanPostProcessor" />
-
+    <bean class="by.den.spring.threePhaseBeanConstructor.FixNoClassFromJavaConfigBeanPostProcessor" />
     <!--<context:annotation-driven />--> <!-- тогда что это за контекст ??? -->
 <!--
     <context:annotation-config> declares support for general annotations

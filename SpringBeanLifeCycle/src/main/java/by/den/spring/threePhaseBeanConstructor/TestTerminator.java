@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by Denis on 01-02-2017
  */
-public class TerminatorTest {
+public class TestTerminator {
 
     @Test
     public void sayQuote() throws InterruptedException {

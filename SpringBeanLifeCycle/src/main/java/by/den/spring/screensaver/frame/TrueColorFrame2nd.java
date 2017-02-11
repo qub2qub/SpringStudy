@@ -9,9 +9,9 @@ import java.util.Random;
 /**
  * Created by Denis on 03-02-2017
  */
-public abstract class TrueColorFrame extends JFrame {
+public abstract class TrueColorFrame2nd extends JFrame {
 
-    public TrueColorFrame() {
+    public TrueColorFrame2nd() {
         setSize(200, 200);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

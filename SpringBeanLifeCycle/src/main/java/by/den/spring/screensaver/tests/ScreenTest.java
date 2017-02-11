@@ -1,28 +1,59 @@
 package by.den.spring.screensaver.tests;
 
-import by.den.spring.screensaver.frame.ColorFrame;
+import by.den.spring.screensaver.frame.ColorFrame1st;
+import by.den.spring.screensaver.frame.ColorFrame3rd;
 import by.den.spring.screensaver.frame.FrameJavaConfig;
-import by.den.spring.screensaver.frame.TrueColorFrame;
+import by.den.spring.screensaver.frame.TrueColorFrame2nd;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Arrays;
 
 /**
  * Created by Denis on 03-02-2017
  */
 public class ScreenTest {
 
-    @Test
-    public void launchScreenSaver() throws InterruptedException {
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(
-                        FrameJavaConfig.class);
+    AnnotationConfigApplicationContext context = null;
+
+    @Before
+    public void setup() {
+        context = new AnnotationConfigApplicationContext(FrameJavaConfig.class);
         for (String name : context.getBeanDefinitionNames()) {
             System.out.println(name);
         }
+    }
+
+    @After
+    public void shutdown() {
+        if (context != null) {
+            context.close();
+            context = null;
+        }
+    }
+
+    @Test
+    public void launchScreenSaver1st() throws InterruptedException {
         while (true) {
-            TrueColorFrame frame = context.getBean(TrueColorFrame.class);
+            ColorFrame1st frame = context.getBean(ColorFrame1st.class);
+            frame.showOnRandomPlace();
+            Thread.sleep(500);
+        }
+    }
+
+    @Test
+    public void launchScreenSaver2ndTrue() throws InterruptedException {
+        while (true) {
+            TrueColorFrame2nd frame = context.getBean(TrueColorFrame2nd.class);
+            frame.showOnRandomPlace();
+            Thread.sleep(500);
+        }
+    }
+
+    @Test
+    public void launchScreenSaver3rd() throws InterruptedException {
+        while (true) {
+            ColorFrame3rd frame = context.getBean(ColorFrame3rd.class);
             frame.showOnRandomPlace();
             Thread.sleep(500);
         }

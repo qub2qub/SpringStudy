@@ -32,6 +32,10 @@ public class AfterProxyContextRefreshApplicationListener implements ApplicationL
             // поэтому нам нужно фактори, которая знает изначальный difinition бинов.
             BeanDefinition beanDefinition = factory.getBeanDefinition(name);
             String originalClassName = beanDefinition.getBeanClassName();
+            // Т.к. JavaConfig не вернёт класс для бина
+            if (originalClassName == null) {
+                continue; // но не тру вариант !
+            }
             try {
                 // т.к. аннотаций у прокси объекта уже не будет, поэтому
                 // нам надо найти оригинальный класс бина, который был загружен фабрикой
@@ -47,22 +51,21 @@ public class AfterProxyContextRefreshApplicationListener implements ApplicationL
                         // т.к. надо вызвать метод не у загруженного класса,
                         // а у прокси для бина из контекста (это совсем другой класс, т.к. уже после всех прокси)
                         Object bean = context.getBean(name);
-/*
                         Class<?> proxyClass = bean.getClass(); // proxy класс
+/*
                         System.out.println("need="+method.getName()+", pt="+method.getParameterTypes());
                         Method[] proxyMethods = proxyClass.getMethods();
                         for (Method pm : proxyMethods) {
                             System.out.println("_m2="+pm.getName() + ", p2="+pm.getParameterTypes());
                         }
                         // java.lang.NoSuchMethodException: com.sun.proxy.$Proxy12.phase3rdContextRefresh()
-                        Method currentMethod = proxyClass.getMethod(method.getName(), method.getParameterTypes());
 */
-                        Method currentMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
+                        Method proxyClassMethod = proxyClass.getMethod(method.getName(), method.getParameterTypes());
 
                         // т.к. все Exception уже и так ловятся,
                         // то запускаем прямо так, без  ReflectionUtils
-                        currentMethod.setAccessible(true);
-                        currentMethod.invoke(bean);
+                        proxyClassMethod.setAccessible(true);
+                        proxyClassMethod.invoke(bean);
                     }
                 }
             } catch (Exception e) {
