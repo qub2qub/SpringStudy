@@ -12,7 +12,7 @@
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
     <!-- или можно прописать другие конфиги, которые подгрузят сразу всю пачку спринг бинов -->
     <!--<context:component-scan base-package="by.den.spring.threePhaseBeanConstructor" />-->
-        <!--annotation-config="false" /> --> <!--что делает этот атрибут-->
+        <!--annotation-config="false" /> --> <!--что делает этот атрибут??-->
 
     <!--<context:annotation-config />-->
 <!--

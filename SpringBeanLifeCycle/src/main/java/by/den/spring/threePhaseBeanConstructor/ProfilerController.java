@@ -1,16 +1,17 @@
 package by.den.spring.threePhaseBeanConstructor;
 
 /**
- * Created by Denis on 01 Февраль 2017
+ * Flag for JMS Console for @ProfilerBenchmark
  */
 public class ProfilerController implements ProfilerControllerMBean {
-    private boolean enabled = true;
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+  
+  private boolean enabled = true;
+  
+  public boolean isEnabled() {
+    return enabled;
+  }
+  
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 }

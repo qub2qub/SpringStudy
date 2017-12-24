@@ -4,9 +4,7 @@ import by.den.spring.screensaver.frame.ColorFrame1st;
 import by.den.spring.screensaver.frame.ColorFrame3rd;
 import by.den.spring.screensaver.frame.FrameJavaConfig;
 import by.den.spring.screensaver.frame.TrueColorFrame2nd;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -14,9 +12,25 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class ScreenTest {
 
-    AnnotationConfigApplicationContext context = null;
+    private static AnnotationConfigApplicationContext context = null;
 
-    @Before
+    @BeforeClass
+    public static void setupOnce() {
+        context = new AnnotationConfigApplicationContext(FrameJavaConfig.class);
+        for (String name : context.getBeanDefinitionNames()) {
+            System.out.println(name);
+        }
+    }
+
+    @AfterClass
+    public static void shutdownOnce() {
+        if (context != null) {
+            context.close();
+            context = null;
+        }
+    }
+
+    /*@Before
     public void setup() {
         context = new AnnotationConfigApplicationContext(FrameJavaConfig.class);
         for (String name : context.getBeanDefinitionNames()) {
@@ -30,7 +44,7 @@ public class ScreenTest {
             context.close();
             context = null;
         }
-    }
+    }*/
 
     @Test
     public void launchScreenSaver1st() throws InterruptedException {

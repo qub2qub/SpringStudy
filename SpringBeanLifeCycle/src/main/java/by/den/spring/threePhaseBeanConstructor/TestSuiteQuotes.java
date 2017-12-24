@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({TestTerminator.class})
+@Suite.SuiteClasses({TerminatorProfilerBenchmarTest.class, TestNoClassFromJavaConfig.class})
 public class TestSuiteQuotes {
 
 }

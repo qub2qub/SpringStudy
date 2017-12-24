@@ -1,5 +1,6 @@
 package by.den.spring.screensaver.frame;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 
 import java.awt.*;
@@ -34,7 +35,7 @@ public class FrameJavaConfig {
         return new ColorFrame3rd();
     }
 
-    @Bean
+    @Bean @Qualifier("1st")
 //    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
 //    @Scope(value = "prototype")
     @Scope(value = "periodical")

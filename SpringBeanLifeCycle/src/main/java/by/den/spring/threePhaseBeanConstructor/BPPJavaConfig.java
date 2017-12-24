@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by Denis on 08-02-2017
  */
 @Configuration
-@ComponentScan
+//@ComponentScan
 public class BPPJavaConfig {
 
     @Bean
