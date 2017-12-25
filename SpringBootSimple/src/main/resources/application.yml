@@ -1,0 +1,4 @@
+prod:
+  mails:
+    - yaml1@gmail.com
+    - yaml2@gmail.com
