@@ -7,16 +7,10 @@ import org.junit.Test;
  * Created by Denis on 03-02-2017
  */
 public class PropsCtxTest {
-
     @Test
     public void loadCtx() {
-        PropertyFileApplicationContext context =
-                new PropertyFileApplicationContext(
-                        "propsContext.properties");
-
+        PropertyFileApplicationContext context =new PropertyFileApplicationContext("propsContext.properties");
         T1st bean = context.getBean(T1st.class);
         bean.sayBye();
-
     }
-
 }

@@ -10,10 +10,7 @@ public class RunBPP {
       AbstractApplicationContext context = new ClassPathXmlApplicationContext("bppBeans.xml");
 
       Object helloWorldBean = context.getBean("helloWorldBean");
-      System.out.println(
-              ">>>>>>>>>>>>>>>> " +
-              "helloWorldBean ["+helloWorldBean.getClass().getName()
-              +"]= \n" + helloWorldBean);
+      System.out.println(">>>>>>>>>>>>>>>> " + helloWorldBean);
       context.registerShutdownHook();
       context.close();
       System.out.println("\n_________ Spring Context Closed _________");

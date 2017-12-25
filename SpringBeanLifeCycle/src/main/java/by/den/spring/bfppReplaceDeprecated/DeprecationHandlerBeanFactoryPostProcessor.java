@@ -1,14 +1,10 @@
 package by.den.spring.bfppReplaceDeprecated;
 
-import by.den.spring.bfppReplaceDeprecated.DeprecatedClass;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
-/**
- * Created by Denis on 02-02-2017
- */
 public class DeprecationHandlerBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -20,7 +16,7 @@ public class DeprecationHandlerBeanFactoryPostProcessor implements BeanFactoryPo
                 Class<?> beanClass = Class.forName(beanClassName);
                 DeprecatedClass annotation = beanClass.getAnnotation(DeprecatedClass.class);
                 if (annotation != null) {
-                    beanDefinition.setBeanClassName(annotation.newImpl().getName());
+                    beanDefinition.setBeanClassName(annotation.replacedBy().getName());
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

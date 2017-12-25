@@ -7,25 +7,22 @@ import java.awt.*;
 import java.util.Random;
 import java.util.function.Supplier;
 
-/**
- * Created by Denis on 03-02-2017
- */
-public class ColorFrame3rd extends JFrame {
+public class Frame3Supplier extends JFrame {
+
+    private static final Random RANDOM = new Random();
 
     @Autowired
     private Supplier<Color> colorSupplier;
 
-    public ColorFrame3rd() {
+    public Frame3Supplier() {
         setSize(200, 200);
-        setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public void showOnRandomPlace() {
-        Random random = new Random();
-        setLocation(random.nextInt(1200), random.nextInt(800));
+        setLocation(RANDOM.nextInt(1200), RANDOM.nextInt(800));
         Color color = colorSupplier.get();
-        System.out.println("color = " + color);
+        System.out.println("ColorFrame3rd colorSupplier = " + color);
         getContentPane().setBackground(color);
         repaint();
     }

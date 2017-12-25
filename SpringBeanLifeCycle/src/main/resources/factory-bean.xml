@@ -5,15 +5,14 @@
 
     <bean id="colorFactoryBean" class="by.den.spring.factoryBean.ColorFactoryBean" />
 
-    <bean id = "carFactoryBean" class = "by.den.spring.factoryBean.MyCarFactoryBean"
-        init-method="sanityCheck">
+    <bean id = "carFactoryBean" class = "by.den.spring.factoryBean.MyCarFactoryBean" init-method="sanityCheck">
         <property name = "make" value = "Honda"/>
         <property name = "year" value = "1984"/>
     </bean>
 
-    <bean class = "by.den.spring.factoryBean.Person" id = "josh">
+    <bean id = "bobbyXML" class = "by.den.spring.factoryBean.Person" >
         <property name = "car" ref = "carFactoryBean"/>
-        <property name = "name" value = "Josh"/>
+        <property name = "name" value = "Bobby__XML"/>
     </bean>
 
 </beans>

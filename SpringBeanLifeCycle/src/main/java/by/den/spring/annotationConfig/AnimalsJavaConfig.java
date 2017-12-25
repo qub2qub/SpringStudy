@@ -8,9 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-/**
- * Created by Denis on 02-02-2017
- */
 @Configuration
 @ComponentScan(basePackages = {"by.den.spring.annotationConfig.animals"})
 public class AnimalsJavaConfig {

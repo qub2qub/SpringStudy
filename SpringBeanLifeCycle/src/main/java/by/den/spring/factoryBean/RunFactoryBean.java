@@ -6,32 +6,30 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.awt.*;
 
-/**
- * Created by Denis on 22 Январь 2017
- */
 public class RunFactoryBean {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("bean-factory.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("factory-bean.xml");
         context.registerShutdownHook();
-
-        AbstractApplicationContext jctx = new AnnotationConfigApplicationContext(CarConfiguration.class);
-        jctx.registerShutdownHook();
-//        jctx.refresh(); // может тут и не надо делать рефреш
-
-        System.out.println("\n_________ Spring 2 Contexts Loaded _________");
-
-        Person aPerson = (Person) jctx.getBean("aPerson");
-        System.out.println("person1 = " + aPerson);
-
-        Person josh = (Person) context.getBean("josh");
-        System.out.println("person2 = " + josh);
-
         Color color = (Color) context.getBean("colorFactoryBean");
-        System.out.println("color = " + color);
-
-        jctx.close();
+        System.out.println("color1 = " + color);
+        color = (Color) context.getBean("colorFactoryBean");
+        System.out.println("color2 = " + color);
+        color = (Color) context.getBean("colorFactoryBean");
+        System.out.println("color3 = " + color);
+        Thread.sleep(500);
+        
+        AbstractApplicationContext carContext = new AnnotationConfigApplicationContext(CarConfiguration.class);
+        carContext.registerShutdownHook();
+//        carContext.refresh(); // может тут и не надо делать рефреш
+        System.out.println("\n_________ Spring 2 Contexts Loaded _________");
+        Person aPerson = (Person) carContext.getBean("aPerson");
+        System.out.println("person1 = " + aPerson);
+        Person bobbyXML = context.getBean(Person.class);
+        System.out.println("person2 = " + bobbyXML);
+        
         context.close();
+        carContext.close();
         System.out.println("\n_________ Spring Context Closed _________");
     }
 }

@@ -6,11 +6,12 @@ import java.awt.*;
 import java.util.Random;
 
 public class ColorFactoryBean implements FactoryBean<Color> {
+    
+    private static final Random RANDOM = new Random();
+    
     @Override
     public Color getObject() throws Exception {
-        Random random = new Random();
-        Color color = new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-        return color;
+        return new Color(RANDOM.nextInt(255), RANDOM.nextInt(255), RANDOM.nextInt(255));
     }
 
     @Override 

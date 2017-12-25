@@ -1,15 +1,14 @@
 package by.den.spring.screensaver.tests;
 
-import by.den.spring.screensaver.frame.ColorFrame1st;
-import by.den.spring.screensaver.frame.ColorFrame3rd;
+import java.util.Arrays;
+
+import by.den.spring.screensaver.frame.Frame1Simple;
+import by.den.spring.screensaver.frame.Frame3Supplier;
 import by.den.spring.screensaver.frame.FrameJavaConfig;
-import by.den.spring.screensaver.frame.TrueColorFrame2nd;
+import by.den.spring.screensaver.frame.Frame2AbstractMethod;
 import org.junit.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-/**
- * Created by Denis on 03-02-2017
- */
 public class ScreenTest {
 
     private static AnnotationConfigApplicationContext context = null;
@@ -17,9 +16,7 @@ public class ScreenTest {
     @BeforeClass
     public static void setupOnce() {
         context = new AnnotationConfigApplicationContext(FrameJavaConfig.class);
-        for (String name : context.getBeanDefinitionNames()) {
-            System.out.println(name);
-        }
+        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
     }
 
     @AfterClass
@@ -49,7 +46,8 @@ public class ScreenTest {
     @Test
     public void launchScreenSaver1st() throws InterruptedException {
         while (true) {
-            ColorFrame1st frame = context.getBean(ColorFrame1st.class);
+            Frame1Simple frame = (Frame1Simple) context.getBean("frame1st");
+            frame.setVisible(true);
             frame.showOnRandomPlace();
             Thread.sleep(500);
         }
@@ -58,7 +56,8 @@ public class ScreenTest {
     @Test
     public void launchScreenSaver2ndTrue() throws InterruptedException {
         while (true) {
-            TrueColorFrame2nd frame = context.getBean(TrueColorFrame2nd.class);
+            Frame2AbstractMethod frame = context.getBean(Frame2AbstractMethod.class);
+            frame.setVisible(true);
             frame.showOnRandomPlace();
             Thread.sleep(500);
         }
@@ -67,7 +66,8 @@ public class ScreenTest {
     @Test
     public void launchScreenSaver3rd() throws InterruptedException {
         while (true) {
-            ColorFrame3rd frame = context.getBean(ColorFrame3rd.class);
+            Frame3Supplier frame = context.getBean(Frame3Supplier.class);
+            frame.setVisible(true);
             frame.showOnRandomPlace();
             Thread.sleep(500);
         }

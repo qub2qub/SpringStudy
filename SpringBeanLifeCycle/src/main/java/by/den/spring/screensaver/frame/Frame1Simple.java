@@ -2,31 +2,30 @@ package by.den.spring.screensaver.frame;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-/**
- * Created by Denis on 03-02-2017
- */
-@org.springframework.stereotype.Component("frame1st")
-public class ColorFrame1st extends JFrame {
+@Component("frame1st")
+//@Scope(BeanDefinition.SCOPE_PROTOTYPE) // будет много разных фреймов всесто 1
+public class Frame1Simple extends JFrame {
 
-    @Autowired @Qualifier("1st")
+    private static final Random RANDOM = new Random();
+
+    @Autowired @Qualifier("color1st")
     private Color color;
 
-    public ColorFrame1st() {
+    public Frame1Simple() {
         setSize(200, 200);
-        setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public void showOnRandomPlace() {
-        Random random = new Random();
-        setLocation(random.nextInt(1200), random.nextInt(800));
+        setLocation(RANDOM.nextInt(1200), RANDOM.nextInt(800));
         getContentPane().setBackground(color);
         repaint();
     }

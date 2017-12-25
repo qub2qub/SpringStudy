@@ -17,7 +17,7 @@ public class BPP_InjRndInt implements BeanPostProcessor {
             InjRndIntANN annotation = field.getAnnotation(InjRndIntANN.class);
             if (annotation != null) {
                 if(Number.class.isAssignableFrom(field.getType())) {
-                    System.out.println("field is Number= " + field.getName());
+                    System.out.println("BPP_InjRndInt >>> field is Number = " + field.getName());
                 } else {
                     throw new RuntimeException("Current field is not a Number "+ field.getName()+"::" + field.getType());
                 }

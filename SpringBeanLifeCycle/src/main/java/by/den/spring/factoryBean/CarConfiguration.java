@@ -18,6 +18,7 @@ public class CarConfiguration {
     @Bean
     public Person aPerson() {
         Person person = new Person();
+        person.setName("IVAN");
         //you must dereference the FactoryBean explicitly in Java configuration and call getObject()
         person.setCar(carFactoryBean().getObject());
         return person;

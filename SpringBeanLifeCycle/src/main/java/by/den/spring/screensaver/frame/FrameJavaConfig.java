@@ -1,59 +1,69 @@
 package by.den.spring.screensaver.frame;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import by.den.spring.screensaver.periodical.CustomPeriodicalScopeConfigurer;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 
 import java.awt.*;
 import java.util.Random;
 import java.util.function.Supplier;
 
-/**
- * Created by Denis on 03-02-2017
- */
+@Configuration
 // по дефолту сканит тот же пакет, где лежит данный конфиг
 @ComponentScan("by.den.spring.screensaver")
-
-@Configuration
 public class FrameJavaConfig {
-
-    private Random random = new Random();
-
-    @Bean
-    @Scope("prototype")
-    public Color color3rd() {
+    
+    private static final Random RANDOM = new Random();
+    
+    private static Color getRandomColor() {
         return new Color(
-                random.nextInt(255),
-                random.nextInt(255),
-                random.nextInt(255));
+            RANDOM.nextInt(255),
+            RANDOM.nextInt(255),
+            RANDOM.nextInt(255));
     }
+    
+    @Bean
+//    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    //  При proxyMode каждый раз при обращении к переменной color во frame будет создаваться новый объект
+//    @Scope(value = BeanDefinition.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public Color color1st() {
+        return getRandomColor();
+    }
+    
+    @Bean
+//    @Qualifier("color1st")
+    @Scope(CustomPeriodicalScopeConfigurer.PERIODICAL)
+    public Color color2nd() {
+        return getRandomColor();
+    }
+    
+    @Bean
+    public Frame2AbstractMethod frame2nd() {
+        return new Frame2AbstractMethod() {
+            @Override
+            protected Color getColor() {
+                // это не вызов метода color2nd(), а обращение к бину "color2nd"
+                return color2nd();
+                // а сам Override-эд метод getColor() -- каждый раз будет
+                // возвращать новый бин "color2nd", т.к. он указан как prototype.
+            }
+        };
+    }
+    
+    @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    public Color color3rd() {
+        return getRandomColor();
+    }
+    
     @Bean
     public Supplier<Color> colorSupplier() {
         return this::color3rd;
     }
+    
     @Bean
-    public ColorFrame3rd frame3rd() {
-        return new ColorFrame3rd();
+    public Frame3Supplier frame3rd() {
+        return new Frame3Supplier();
     }
-
-    @Bean @Qualifier("1st")
-//    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
-//    @Scope(value = "prototype")
-    @Scope(value = "periodical")
-    public Color color2nd() {
-        return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-    }
-
-    @Bean
-    public TrueColorFrame2nd frame2nd() {
-        return new TrueColorFrame2nd() {
-            @Override
-            protected Color getColor() {
-                // это не вызов метода color(), а обращение к бину "color"
-                return color2nd();
-                // а сам Override-эд метод getColor() -- каждый раз будет
-                // возвращать новый бин "color", т.к. он указан как prototype.
-            }
-        };
-    }
-
+    
 }
